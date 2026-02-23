@@ -1,0 +1,21 @@
+{
+  "name": "echoclawbot-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josh-strohm/echoclawbot-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/josh-strohm/echoclawbot-website/issues"
+  },
+  "homepage": "https://github.com/josh-strohm/echoclawbot-website#readme"
+}
