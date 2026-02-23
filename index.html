@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoClaw — Your Personal AI Assistant</title>
+    <meta name="description"
+        content="EchoClaw lives on your machine, talks through Telegram, remembers everything, and never stops working. Built from scratch. Owned by you.">
+    <meta property="og:title" content="EchoClaw — Your Personal AI Assistant">
+    <meta property="og:description" content="The AI that actually gets things done. Your machine. Your rules.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://echoclaw.bot">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Favicon (Inline SVG for now) -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,50 Q40,20 60,50 T100,50 L80,90 Q50,60 20,90 Z' fill='%232fe0ed'/></svg>">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grain-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stylized Echo Wave + Claw -->
+                    <path d="M10,50 C30,10 50,10 50,50 C50,90 70,90 90,50 M30,50 C45,30 55,30 55,50 C55,70 65,70 80,50"
+                        stroke="url(#logo-grad)" stroke-width="8" stroke-linecap="round" fill="none" />
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2fe0ed" />
+                            <stop offset="100%" stop-color="#ee8416" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">EchoClaw.Bot</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#integrations">Integrations</a>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+
+            <a href="#get-started" class="btn btn-outline nav-cta">Get Started &rarr;</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero section">
+        <div class="hero-content fade-up">
+            <h1 class="hero-title">The AI that actually<br><span class="text-gradient">gets things done.</span></h1>
+            <p class="hero-subtitle">EchoClaw lives on your machine, talks through Telegram, remembers everything, and
+                never stops working. Built from scratch. Owned by you.</p>
+            <div class="hero-actions">
+                <a href="#get-started" class="btn btn-primary primary-pulse">Get Started</a>
+                <a href="#demo" class="btn btn-ghost">See It In Action</a>
+            </div>
+        </div>
+
+        <div class="hero-visual fade-up delay-1">
+            <div class="terminal-window floating">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">telegram ~ @echoclawbot</span>
+                </div>
+                <div class="terminal-body chat-sim">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Social Proof Marquee -->
+    <section class="social-proof">
+        <p class="social-proof-text fade-up">Trusted by developers, founders, and power users</p>
+        <div class="marquee-wrapper fade-up delay-1">
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span>Telegram</span>
+                    <span class="separator">&bull;</span>
+                    <span>GitHub</span>
+                    <span class="separator">&bull;</span>
+                    <span>Gmail</span>
+                    <span class="separator">&bull;</span>
+                    <span>Notion</span>
+                    <span class="separator">&bull;</span>
+                    <span>Calendar</span>
+                    <span class="separator">&bull;</span>
+                    <span>VS Code</span>
+                    <span class="separator">&bull;</span>
+                    <span>Discord</span>
+                    <span class="separator">&bull;</span>
+                    <span>Linear</span>
+                    <span class="separator">&bull;</span>
+                    <!-- Duplicate for infinite scroll loop -->
+                    <span>Telegram</span>
+                    <span class="separator">&bull;</span>
+                    <span>GitHub</span>
+                    <span class="separator">&bull;</span>
+                    <span>Gmail</span>
+                    <span class="separator">&bull;</span>
+                    <span>Notion</span>
+                    <span class="separator">&bull;</span>
+                    <span>Calendar</span>
+                    <span class="separator">&bull;</span>
+                    <span>VS Code</span>
+                    <span class="separator">&bull;</span>
+                    <span>Discord</span>
+                    <span class="separator">&bull;</span>
+                    <span>Linear</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+        <h2 class="section-title fade-up">What EchoClaw Does</h2>
+        <div class="features-grid">
+
+            <div class="feature-card glass fade-up delay-1">
+                <div class="feature-icon">💻</div>
+                <h3 class="feature-title">Runs On Your Machine</h3>
+                <p class="feature-desc">Mac, Windows, or Linux. Your data stays yours. Private by default.</p>
+            </div>
+
+            <div class="feature-card glass fade-up delay-2">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Telegram Native</h3>
+                <p class="feature-desc">Talk to it like a friend. DMs or group chats. No app to install.</p>
+            </div>
+
+            <div class="feature-card glass fade-up delay-3">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Persistent Memory</h3>
+                <p class="feature-desc">Remembers your preferences, context, and history. Gets smarter over time.</p>
+            </div>
+
+            <div class="feature-card glass fade-up delay-1">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Full System Access</h3>
+                <p class="feature-desc">Read files, run scripts, execute shell commands. Full power or sandboxed.</p>
+            </div>
+
+            <div class="feature-card glass fade-up delay-2">
+                <div class="feature-icon">❤️</div>
+                <h3 class="feature-title">Daily Heartbeat</h3>
+                <p class="feature-desc">Proactive daily briefings at 8am. It reaches out to YOU.</p>
+            </div>
+
+            <div class="feature-card glass fade-up delay-3">
+                <div class="feature-icon">🔌</div>
+                <h3 class="feature-title">Self-Extending Skills</h3>
+                <p class="feature-desc">Ask it to learn something new. It builds its own integrations via MCP.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works section">
+        <h2 class="section-title fade-up">Up and Running in Minutes</h2>
+        <div class="steps-container">
+            <!-- Connecting Line -->
+            <div class="steps-line"></div>
+
+            <div class="step fade-up delay-1">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Clone & Configure</h3>
+                <p class="step-desc">Pull the repo, set your env vars, and deploy to Railway or run locally.</p>
+            </div>
+
+            <div class="step fade-up delay-2">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Connect Telegram</h3>
+                <p class="step-desc">Link your Telegram bot token. EchoClaw goes live instantly.</p>
+            </div>
+
+            <div class="step fade-up delay-3">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Start Talking</h3>
+                <p class="step-desc">Message your bot. It remembers, it acts, it learns. That's it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo / Terminal Section -->
+    <section id="demo" class="demo-section section">
+        <div class="terminal-window large fade-up">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">boot_sequence.sh</span>
+            </div>
+            <div class="terminal-body console scanlines">
+                <div id="typewriter-output"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integrations" class="integrations section">
+        <h2 class="section-title fade-up">Connects to Everything</h2>
+        <div class="integrations-cloud fade-up delay-1">
+            <div class="integration-node floating" style="animation-delay: 0s;">Telegram</div>
+            <div class="integration-node floating" style="animation-delay: 0.5s;">Gmail</div>
+            <div class="integration-node floating" style="animation-delay: 1s;">GitHub</div>
+            <div class="integration-node floating" style="animation-delay: 1.5s;">Calendar</div>
+            <div class="integration-node floating" style="animation-delay: 0.2s;">Notion</div>
+            <div class="integration-node floating" style="animation-delay: 0.8s;">Discord</div>
+            <div class="integration-node floating" style="animation-delay: 1.2s;">Slack</div>
+            <div class="integration-node floating" style="animation-delay: 1.8s;">File System</div>
+            <div class="integration-node floating" style="animation-delay: 0.4s;">Shell</div>
+            <div class="integration-node floating" style="animation-delay: 2s;">Browser</div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+        <h2 class="section-title fade-up">What People Are Saying</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card glass fade-up delay-1">
+                <p class="quote">"EchoClaw replaced three SaaS tools I was paying for. It just handles everything from
+                    Telegram."</p>
+                <div class="author">
+                    <div class="author-avatar avatar-1"></div>
+                    <span class="author-name">Alex M., Developer</span>
+                </div>
+            </div>
+            <div class="testimonial-card glass fade-up delay-2">
+                <p class="quote">"The heartbeat feature is addictive. Every morning I wake up to a briefing I didn't
+                    have to ask for."</p>
+                <div class="author">
+                    <div class="author-avatar avatar-2"></div>
+                    <span class="author-name">Sarah J., Founder</span>
+                </div>
+            </div>
+            <div class="testimonial-card glass fade-up delay-1">
+                <p class="quote">"I asked it to build me a skill for tracking crypto prices. It did it in 2 minutes.
+                    From my phone."</p>
+                <div class="author">
+                    <div class="author-avatar avatar-3"></div>
+                    <span class="author-name">David K., Crypto Trader</span>
+                </div>
+            </div>
+            <div class="testimonial-card glass fade-up delay-2">
+                <p class="quote">"This is what Siri should have been. Except it actually works and I own it."</p>
+                <div class="author">
+                    <div class="author-avatar avatar-4"></div>
+                    <span class="author-name">Elena R., Designer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Section -->
+    <section class="open-source section fade-up">
+        <div class="os-container glass">
+            <h2 class="section-title">Built From Scratch.<br>Open by Nature.</h2>
+            <p class="os-desc">EchoClaw isn't a fork. It's a ground-up TypeScript build inspired by the personal AI
+                movement. Every line of code is intentional. Extend it, hack it, make it yours.</p>
+            <a href="https://github.com/josh-strohm/echoclawbot" class="btn btn-outline glow-hover" target="_blank"
+                rel="noopener noreferrer">View on GitHub &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Footer / CTA -->
+    <footer id="get-started" class="footer section fade-up">
+        <h2 class="footer-title">Your AI assistant is waiting.</h2>
+        <p class="footer-subtitle">Deploy EchoClaw in minutes. Talk to it on Telegram. Let it handle the rest.</p>
+        <a href="#get-started" class="btn btn-primary primary-pulse cta-large">Get Started &rarr;</a>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="https://github.com/josh-strohm/echoclawbot" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+                <a href="#">Telegram</a>
+                <a href="#">Documentation</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 EchoClaw &bull; echoclaw.bot
+            </div>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <!-- Modal Form -->
+    <div id="cta-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 class="modal-title">Start Your Journey</h3>
+            <p class="modal-desc">Enter your details to get started with EchoClaw.</p>
+            <form id="waitlist-form" class="cta-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <button type="submit" class="btn btn-primary primary-pulse w-full">Join Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
