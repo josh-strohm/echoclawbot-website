@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const lines = [
         { text: "$ npx tsx src/index.ts", type: "cmd" },
-        { text: "🦞 EchoClaw v1.0 starting...", type: "system" },
+        { text: "🤖 EchoClaw v1.0 starting...", type: "system" },
         { text: "✓ Memory loaded (semantic + local)", type: "success" },
         { text: "✓ MCP tools connected", type: "success" },
         { text: "✓ Telegram bot online", type: "success" },
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             msgEl.className = `chat-msg ${msgData.sender}`;
 
             const isBot = msgData.sender === 'bot';
-            const avatarContent = isBot ? '🦞' : 'U';
+            const avatarContent = isBot ? '<img src="echoclawbot.png" alt="Bot">' : 'U';
 
             msgEl.innerHTML = `
                 <div class="avatar ${msgData.sender}">${avatarContent}</div>

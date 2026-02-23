@@ -145,8 +145,9 @@ body {
 }
 
 .logo-icon {
-    width: 28px;
-    height: 28px;
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -316,6 +317,32 @@ body {
     margin: 0 auto 2.5rem;
 }
 
+.hero-bot-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.hero-bot-icon img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(47, 224, 237, 0.3), 0 0 80px rgba(238, 132, 22, 0.2);
+    animation: botPulse 3s ease-in-out infinite;
+}
+
+@keyframes botPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px rgba(47, 224, 237, 0.3), 0 0 80px rgba(238, 132, 22, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 60px rgba(47, 224, 237, 0.5), 0 0 100px rgba(238, 132, 22, 0.3);
+    }
+}
+
 .hero-actions {
     display: flex;
     gap: 1rem;
@@ -424,6 +451,13 @@ body {
 .avatar.bot {
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange));
     color: #000;
+}
+
+.avatar.bot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .msg-content {
@@ -825,26 +859,26 @@ body {
 .footer {
     text-align: center;
     position: relative;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .footer-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-subtitle {
-    font-size: 1.125rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .footer-bottom {
-    margin-top: 6rem;
-    padding-top: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--glass-border);
     display: flex;
     flex-direction: column;
