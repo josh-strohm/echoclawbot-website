@@ -166,6 +166,12 @@ body {
     color: var(--text-primary);
 }
 
+.nav-sep {
+    color: #666;
+    margin: 0 10px;
+    font-size: 0.85rem;
+}
+
 .nav-cta {
     display: none;
 }
@@ -977,9 +983,11 @@ body {
 .modal-content {
     background: linear-gradient(145deg, rgba(20, 20, 30, 0.95), rgba(10, 10, 15, 0.98));
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 3rem;
     width: 90%;
     max-width: 675px;
+    max-height: 92vh;
+    overflow-y: auto;
     position: relative;
     transform: translateY(20px) scale(0.95);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1464,4 +1472,297 @@ pre code {
 
 .contact-email a:hover {
     color: var(--accent-orange);
+}
+
+/* Skills Page */
+.skills-section {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+}
+
+.skills-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skills-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skills-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.skill-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(47, 224, 237, 0.3);
+    box-shadow: 0 10px 30px rgba(47, 224, 237, 0.1);
+}
+
+.skill-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skill-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.skill-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.skill-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.add-skill-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.add-skill-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.add-skill-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-skill-section code {
+    font-family: var(--font-mono);
+    background: rgba(47, 224, 237, 0.1);
+    color: var(--accent-cyan);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.skills-footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+}
+
+.nav-links a.active {
+    color: var(--accent-cyan);
+}
+
+/* Skill Modal */
+.skill-prompt-box {
+    background: #0a0a0f;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.skill-prompt-box pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    overflow-x: auto;
+}
+
+.skill-prompt-box code {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.copy-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent-cyan);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.copy-btn:hover {
+    background: #3eeaff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(47, 224, 237, 0.3);
+}
+
+.copy-btn.copied {
+    background: #27C93F;
+    color: #fff;
+}
+
+.skill-install-note {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0;
+}
+
+/* Skill Tabs */
+.skill-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.75rem;
+}
+
+.skill-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.skill-tab:hover {
+    color: var(--text-primary);
+    background: var(--glass-bg);
+}
+
+.skill-tab.active {
+    color: var(--accent-cyan);
+    background: rgba(47, 224, 237, 0.1);
+}
+
+.skill-tab-content {
+    display: none;
+}
+
+.skill-tab-content.active {
+    display: block;
+}
+
+.skill-instructions-box {
+    background: #0a0a0f;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.skill-instructions-box h4 {
+    color: var(--accent-cyan);
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.skill-instructions-box h4:first-child {
+    margin-top: 0;
+}
+
+.skill-instructions-box p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.skill-instructions-box code {
+    font-family: var(--font-mono);
+    background: rgba(47, 224, 237, 0.1);
+    color: var(--accent-cyan);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.skill-instructions-box ol, .skill-instructions-box ul {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.skill-instructions-box li {
+    margin-bottom: 0.4rem;
+}
+
+.skill-instructions-box .env-example {
+    background: rgba(238, 132, 22, 0.1);
+    border: 1px solid rgba(238, 132, 22, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+}
+
+.skill-instructions-box .env-example code {
+    color: var(--accent-orange);
+    display: block;
+    font-size: 0.8rem;
+}
+
+.skill-instructions-box .note {
+    background: rgba(47, 224, 237, 0.05);
+    border-left: 3px solid var(--accent-cyan);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
