@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation — EchoClaw Documentation</title>
+    <meta name="description" content="Learn how to install and configure EchoClaw Bot on your machine.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,50 Q40,20 60,50 T100,50 L80,90 Q50,60 20,90 Z' fill='%232fe0ed'/></svg>">
+</head>
+
+<body>
+
+    <div class="bg-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grain-overlay"></div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10,50 C30,10 50,10 50,50 C50,90 70,90 90,50 M30,50 C45,30 55,30 55,50 C55,70 65,70 80,50"
+                        stroke="url(#logo-grad)" stroke-width="8" stroke-linecap="round" fill="none" />
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2fe0ed" />
+                            <stop offset="100%" stop-color="#ee8416" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">EchoClaw.Bot</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#get-started">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section docs-section">
+        <div class="docs-container">
+            <a href="../index.html" class="back-link">&larr; Back to Home</a>
+            
+            <h1 class="docs-title">Installation Guide</h1>
+            <p class="docs-subtitle">Get EchoClaw up and running on your machine in minutes.</p>
+
+            <div class="docs-toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#prerequisites">Prerequisites</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#configuration">Configuration</a></li>
+                    <li><a href="#telegram-setup">Telegram Setup</a></li>
+                    <li><a href="#running">Running EchoClaw</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-content">
+                <section id="prerequisites" class="docs-block">
+                    <h2>Prerequisites</h2>
+                    <p>Before installing EchoClaw, make sure you have the following:</p>
+                    <ul class="req-list">
+                        <li><strong>Node.js</strong> — Version 18.0 or higher</li>
+                        <li><strong>npm</strong> — Comes with Node.js</li>
+                        <li><strong>Git</strong> — For cloning the repository</li>
+                        <li><strong>Telegram Account</strong> — To interact with your bot</li>
+                        <li><strong>OpenAI API Key</strong> — For AI capabilities</li>
+                    </ul>
+                </section>
+
+                <section id="installation" class="docs-block">
+                    <h2>Installation</h2>
+                    
+                    <div class="step-block">
+                        <h3>1. Clone the Repository</h3>
+                        <pre><code>git clone https://github.com/josh-strohm/echoclawbot.git
+cd echoclawbot</code></pre>
+                    </div>
+
+                    <div class="step-block">
+                        <h3>2. Install Dependencies</h3>
+                        <pre><code>npm install</code></pre>
+                    </div>
+
+                    <div class="step-block">
+                        <h3>3. Copy the Environment File</h3>
+                        <pre><code>cp .env.example .env</code></pre>
+                    </div>
+                </section>
+
+                <section id="configuration" class="docs-block">
+                    <h2>Configuration</h2>
+                    <p>Open the <code>.env</code> file in your preferred text editor and configure the following variables:</p>
+
+                    <div class="env-block">
+                        <h3>OpenAI Configuration</h3>
+                        <pre><code>OPENAI_API_KEY=your_openai_api_key_here</code></pre>
+                        <p class="note">Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com</a></p>
+                    </div>
+
+                    <div class="env-block">
+                        <h3>Telegram Configuration</h3>
+                        <pre><code>TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here</code></pre>
+                        <p class="note">See the Telegram Setup section below for instructions on getting these values.</p>
+                    </div>
+
+                    <div class="env-block">
+                        <h3>Optional Settings</h3>
+                        <pre><code># Memory settings (defaults shown)
+MEMORY_TYPE=local
+MEMORY_PERSISTENCE=true
+
+# Heartbeat time (24-hour format)
+HEARTBEAT_TIME=08:00</code></pre>
+                    </div>
+                </section>
+
+                <section id="telegram-setup" class="docs-block">
+                    <h2>Telegram Setup</h2>
+                    
+                    <div class="step-block">
+                        <h3>1. Create a New Bot</h3>
+                        <ol>
+                            <li>Open Telegram and search for <strong>@BotFather</strong></li>
+                            <li>Send the command <code>/newbot</code></li>
+                            <li>Follow the prompts to name your bot</li>
+                            <li>Copy the <strong>bot token</strong> provided</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-block">
+                        <h3>2. Get Your Chat ID</h3>
+                        <ol>
+                            <li>Search for <strong>@userinfobot</strong> on Telegram</li>
+                            <li>Start a chat with it</li>
+                            <li>It will display your <strong>Chat ID</strong> (a number)</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="running" class="docs-block">
+                    <h2>Running EchoClaw</h2>
+                    
+                    <div class="step-block">
+                        <h3>Development Mode</h3>
+                        <pre><code>npm run dev</code></pre>
+                        <p>This starts EchoClaw with hot-reloading enabled.</p>
+                    </div>
+
+                    <div class="step-block">
+                        <h3>Production Mode</h3>
+                        <pre><code>npm run build
+npm start</code></pre>
+                        <p>Builds the TypeScript and runs the compiled JavaScript.</p>
+                    </div>
+
+                    <div class="success-block">
+                        <h3>Success!</h3>
+                        <p>When EchoClaw starts successfully, you'll see:</p>
+                        <pre><code>✓ Memory loaded
+✓ MCP tools connected
+✓ Telegram bot online
+EchoClaw is ready. Listening...</code></pre>
+                    </div>
+                </section>
+
+                <section id="troubleshooting" class="docs-block">
+                    <h2>Troubleshooting</h2>
+                    
+                    <div class="faq-block">
+                        <h3>Bot not responding?</h3>
+                        <p>Make sure your Telegram bot token is correct in the .env file and you've started a chat with your bot.</p>
+                    </div>
+
+                    <div class="faq-block">
+                        <h3>OpenAI errors?</h3>
+                        <p>Verify your API key is valid and you have credits available on your OpenAI account.</p>
+                    </div>
+
+                    <div class="faq-block">
+                        <h3>Port already in use?</h3>
+                        <p>EchoClaw defaults to port 3000. You can change this by setting <code>PORT</code> in your .env file.</p>
+                    </div>
+
+                    <div class="faq-block">
+                        <h3>Need help?</h3>
+                        <p>Join our community on Telegram or open an issue on GitHub.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer docs-footer">
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="https://github.com/josh-strohm/echoclawbot" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#">Telegram</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 EchoClaw &bull; echoclaw.bot
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

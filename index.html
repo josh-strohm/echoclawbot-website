@@ -299,8 +299,8 @@
                 <a href="https://github.com/josh-strohm/echoclawbot" target="_blank"
                     rel="noopener noreferrer">GitHub</a>
                 <a href="#">Telegram</a>
-                <a href="#">Documentation</a>
-                <a href="#">Contact</a>
+                <a href="docs/installation.html">Documentation</a>
+                <a href="#contact">Contact</a>
             </div>
             <div class="copyright">
                 &copy; 2026 EchoClaw &bull; echoclaw.bot
@@ -311,10 +311,10 @@
 
     <!-- Modal Form -->
     <div id="cta-modal" class="modal-overlay">
-        <div class="modal-content glass">
+        <div class="modal-content">
             <button class="modal-close" id="modal-close">&times;</button>
-            <h3 class="modal-title">Start Your Journey</h3>
-            <p class="modal-desc">Enter your details to get started with EchoClaw.</p>
+            <h3 class="modal-title">Get Started with EchoClaw</h3>
+            <p class="modal-desc">Sign-up to download and deploy your own EchoClaw Bot.</p>
             <form id="waitlist-form" class="cta-form">
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -324,8 +324,37 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="john@example.com" required>
                 </div>
-                <button type="submit" class="btn btn-primary primary-pulse w-full">Join Now</button>
+                <button type="submit" class="btn btn-primary w-full">Sign Up</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="contact-modal-close">&times;</button>
+            <h3 class="modal-title">Get in Touch</h3>
+            <p class="modal-desc">Have a question? We'd love to hear from you.</p>
+            <form id="contact-form" class="cta-form">
+                <div class="form-group">
+                    <label for="contact-name">Your Name</label>
+                    <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="contact-reason">Your Message</label>
+                    <textarea id="contact-reason" name="reason" placeholder="Tell us how we can help you..." rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Send Message</button>
+            </form>
+            <p class="contact-email">Or email us directly at <a href="mailto:help@echoclaw.bot">help@echoclaw.bot</a></p>
         </div>
     </div>
 

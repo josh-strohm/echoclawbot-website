@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(e) {
         if (e) e.preventDefault();
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
@@ -211,29 +211,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (modal && closeBtn && form) {
-        // Open modal on CTA click
         ctaButtons.forEach(btn => {
             btn.addEventListener('click', openModal);
         });
 
-        // Close on X click
         closeBtn.addEventListener('click', closeModal);
 
-        // Close on background click
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
             }
         });
 
-        // Handle form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
@@ -243,12 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
-            // Gather form data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Actual API call
                 const response = await fetch('https://n8n.srv945929.hstgr.cloud/webhook/6fdda321-ac0a-412c-8ced-6a6306a6e272', {
                     method: 'POST',
                     headers: {
@@ -266,9 +259,95 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     setTimeout(() => {
                         closeModal();
-                        // Reset form silently after close
                         setTimeout(() => {
                             form.reset();
+                            btn.textContent = originalText;
+                            btn.style = '';
+                            btn.classList.remove('token-success');
+                        }, 300);
+                    }, 1500);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Submission failed:', error);
+                btn.textContent = 'Error. Try Again.';
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
+            }
+        });
+    }
+
+    /* --- 8. Contact Modal Logic --- */
+    const contactModal = document.getElementById('contact-modal');
+    const contactCloseBtn = document.getElementById('contact-modal-close');
+    const contactForm = document.getElementById('contact-form');
+    const contactLink = document.querySelector('a[href="#contact"]');
+
+    function openContactModal(e) {
+        if (e) e.preventDefault();
+        contactModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (contactModal && contactCloseBtn && contactForm && contactLink) {
+        contactLink.addEventListener('click', openContactModal);
+
+        contactCloseBtn.addEventListener('click', closeContactModal);
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeContactModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+                closeContactModal();
+            }
+        });
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+
+            btn.textContent = 'Sending...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('https://n8n.srv945929.hstgr.cloud/webhook/6fdda321-ac0a-412c-8ced-6a6306a6e272', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    btn.textContent = 'Sent!';
+                    btn.classList.add('token-success');
+                    btn.style.background = 'transparent';
+                    btn.style.border = '1px solid #27C93F';
+                    btn.style.color = '#27C93F';
+
+                    setTimeout(() => {
+                        closeContactModal();
+                        setTimeout(() => {
+                            contactForm.reset();
                             btn.textContent = originalText;
                             btn.style = '';
                             btn.classList.remove('token-success');
