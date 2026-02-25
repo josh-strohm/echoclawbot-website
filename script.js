@@ -383,7 +383,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const skillPrompts = {
         gmail: {
-            prompt: `Please implement and configure the ability for you to use the Gmail skill. From now on, when I ask you to check my email, you should search for emails using the Gmail API. When I ask me to send an email, you should compose and send it using the Gmail API. Always ask for confirmation before sending any email. Your available Gmail actions include: list_emails (to show recent emails), read_email (to view a specific email), send_email (to compose and send a new email), and search_emails (to find emails by keyword). Remember to use this skill whenever I mention checking, reading, sending, or searching emails.`,
+            prompt: `Implement a comprehensive Gmail skill using the Google Discovery API. The AI must be able to:
+
+Read: List messages, fetch specific email bodies, and parse attachments.
+
+Draft: Create email drafts based on context and save them for user review.
+
+Send: Send emails directly, including support for CC/BCC and file attachments.
+
+Organize: Search messages using Gmail's query syntax (e.g., 'from:user'), mark emails as read/unread, and apply or remove labels.`,
             instructions: `<h4>Step 1: Enable Gmail API in Google Cloud</h4>
 <p>1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></p>
 <p>2. Create a new project or select an existing one</p>
@@ -403,7 +411,15 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="note"><strong>Note:</strong> For production, you'll need to verify your app with Google. For development, you can use the downloaded credentials directly.</div>`
         },
         calendar: {
-            prompt: `I want you to enable the Calendar skill right now. When I ask about my schedule, you need to list today's events from my Google Calendar. Whenever I want to schedule something, you should create a new event with the title, time, and description I provide. Always confirm the details before creating any event. Your available Calendar actions include: list_events (to show upcoming events), create_event (to schedule new events), delete_event (to remove events), and check_availability (to see when I'm free). Use this skill whenever I mention my calendar, schedule, events, or appointments.`,
+            prompt: `Develop a Calendar skill using the Google Calendar API v3. The AI needs to:
+
+View: List upcoming events and fetch details for a specific calendar ID.
+
+Schedule: Create new events with titles, descriptions, locations, and attendee invites.
+
+Check Availability: Use the freebusy query to determine if a time slot is open before booking.
+
+Modify: Update existing event times or delete cancelled meetings.`,
             instructions: `<h4>Step 1: Enable Calendar API in Google Cloud</h4>
 <p>1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></p>
 <p>2. Create a new project or select an existing one</p>
@@ -420,18 +436,15 @@ document.addEventListener('DOMContentLoaded', () => {
 <h4>Step 3: Add to .env file</h4>
 <div class="env-example"><code>GOOGLE_CLIENT_ID=your_client_id<br>GOOGLE_CLIENT_SECRET=your_client_secret</code></div>`
         },
-        memory_md: {
-            prompt: `Your task is to learn and activate the Memory.md skill. You should store and retrieve important information in a local memory.md file in your project directory. When I ask you to remember something, append it to the memory.md file with a timestamp. When I ask what you remember, read and summarize the contents of memory.md. This file-based memory allows you to persist information across sessions. Use markdown formatting to organize memories by date and topic. Activate this whenever I ask you to remember or recall information.`,
-            instructions: `<h4>No Setup Required</h4>
-<p>This skill uses a simple markdown file in your project directory. No API keys needed!</p>
-
-<h4>How it works</h4>
-<p>When you install this skill, a <code>memory.md</code> file will be created in your EchoClaw data directory. The bot will read and write to this file to persist memories across sessions.</p>
-
-<div class="note"><strong>Tip:</strong> You can customize the memory file location by setting MEMORY_FILE_PATH in your .env file.</div>`
-        },
         memory_pinecone: {
-            prompt: `Please implement and configure the ability for you to use the Pinecone Vector DB skill. From now on, you should store and retrieve memories using Pinecone, a vector database that enables semantic search. When I ask you to remember something, embed and store that information in my Pinecone index. When I ask what you remember or want to find related information, perform a semantic search against the Pinecone vectors to find the most relevant memories. This skill gives you powerful similarity-based memory recall. Remember to use this whenever I ask you to remember facts, preferences, or any information you'd like to retrieve later using natural language.`,
+            prompt: `Vector Databases (Pinecone & ChromaDB): Semantic Memory
+Create a 'Long-Term Semantic Memory' skill using Pinecone (cloud) and ChromaDB (local). The AI should:
+
+Store: Generate embeddings for text chunks and upsert them with metadata (source, timestamp, tags).
+
+Retrieve: Perform vector similarity searches to find relevant context for a user's question.
+
+Manage: Update existing vectors when information changes and delete outdated 'memories' to maintain accuracy.`,
             instructions: `<h4>Step 1: Create a Pinecone Account</h4>
 <p>1. Go to <a href="https://www.pinecone.io/" target="_blank">pinecone.io</a> and sign up</p>
 <p>2. Create a new project</p>
@@ -446,22 +459,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <div class="note"><strong>Note:</strong> Make sure your Pinecone index is created before using the skill. You'll also need to install the pinecone-client package.</div>`
         },
-        memory_chroma: {
-            prompt: `Activate the ChromaDB skill so you can use it going forward. Store and retrieve memories using Chroma, an open-source vector database. When I tell you to remember something, embed and persist that information in the Chroma database. When I ask what you remember or need to find information, query Chroma to retrieve relevant memories using semantic search. Chroma stores embeddings locally, giving you persistent memory with privacy. Use this whenever I ask you to remember personal details, preferences, or conversation context that you'd like to recall later.`,
-            instructions: `<h4>No Setup Required</h4>
-<p>This skill runs entirely locally. No API keys needed!</p>
+        memory_md: {
+            prompt: `Implement a 'File-Based Memory' skill that uses a local Memory.md file as a persistent, human-readable scratchpad. The AI must be able to:
 
-<h4>Installation</h4>
-<p>Make sure you have the chromadb package installed:</p>
-<div class="env-example"><code>npm install chromadb</code></div>
+Read: Parse the entire Markdown file to recover context from previous sessions or find specific 'learned' facts.
+
+Append: Add new entries to the bottom of the file with a timestamp (e.g., '### 2026-02-25: User prefers dark mode UI').
+
+Update/Summarize: Periodically read long-form logs and rewrite them into a 'Current State' summary at the top of the file to save token space.
+
+Search: Perform a keyword-based string search within the file to locate specific historical data points.
+
+Categorize: Use Markdown headers (e.g., # Preferences, # Project Alpha, # Meeting Notes) to organize information so it can be retrieved by section.`,
+            instructions: `<h4>No Setup Required</h4>
+<p>This skill uses a simple markdown file in your project directory. No API keys needed!</p>
 
 <h4>How it works</h4>
-<p>ChromaDB stores embeddings locally in a directory called <code>chroma_data</code> in your project. All data stays on your machine.</p>
+<p>When you install this skill, a <code>memory.md</code> file will be created in your EchoClaw data directory. The bot will read and write to this file to persist memories across sessions.</p>
 
-<div class="note"><strong>Note:</strong> You may also need to install sentence-transformers for embedding generation.</div>`
+<div class="note"><strong>Tip:</strong> You can customize the memory file location by setting MEMORY_FILE_PATH in your .env file.</div>`
         },
         memory_sqlite: {
-            prompt: `I need you to set up and enable the SQLite Memory skill. Store and retrieve information using SQLite, a lightweight local database. When I ask you to remember something, create a structured record in the SQLite database with the information and timestamp. When I ask what you remember, query the database to retrieve stored memories. This gives you structured, searchable persistent storage. Use SQL queries to efficiently find specific memories or retrieve all memories. Remember to use this whenever I ask you to remember details, preferences, or any structured information you'd like to store and query later.`,
+            prompt: `Structured Data (SQLite & Memory.md): Organized Records
+Build a structured memory system.
+
+SQLite: Implement a relational database skill to create tables, insert structured records (like task lists or user preferences), and run complex SQL SELECT queries with filters.
+
+Memory.md: Implement a file-based logging skill that can read a specific Markdown file, append new 'thought' entries or logs, and rewrite sections to summarize a conversation history.`,
             instructions: `<h4>No Setup Required</h4>
 <p>This skill runs entirely locally. No API keys needed!</p>
 
@@ -474,8 +498,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <div class="note"><strong>Tip:</strong> You can customize the database location by setting DATABASE_PATH in your .env file.</div>`
         },
+        memory_chroma: {
+            prompt: `Implement a 'Local Semantic Memory' skill using the ChromaDB library. The AI must manage a persistent local database stored on disk and perform the following operations:
+
+Initialize/Connect: Create or load a persistent ChromaDB client pointing to a specific local directory (e.g., ./chroma_db).
+
+Collection Management: Create, list, or delete 'collections' (the equivalent of tables) to categorize different types of memories (e.g., 'User_Preferences' vs. 'Project_Knowledge').
+
+Add/Embed: Convert incoming text into vector embeddings (using a model like all-Minilm-L6-v2 or OpenAI's text-embedding-3-small) and store them in the collection with unique IDs and metadata.
+
+Query: Perform a similarity search to find the 'Top K' most relevant documents based on a user's current question or task context.
+
+Update/Upsert: Refresh existing memory entries if the information changes, ensuring no duplicate IDs are created.
+
+Filter: Use metadata filtering (e.g., where={"type": "technical_doc"}) to narrow down the search results before performing the vector comparison.`,
+            instructions: `<h4>No Setup Required</h4>
+<p>This skill runs entirely locally. No API keys needed!</p>
+
+<h4>Installation</h4>
+<p>Make sure you have the chromadb package installed:</p>
+<div class="env-example"><code>npm install chromadb</code></div>
+
+<h4>How it works</h4>
+<p>ChromaDB stores embeddings locally in a directory called <code>chroma_data</code> in your project. All data stays on your machine.</p>
+
+<div class="note"><strong>Note:</strong> You may also need to install sentence-transformers for embedding generation.</div>`
+        },
         github: {
-            prompt: `Enable the GitHub skill for your use. From this point forward, when I ask about my repositories, you should list my GitHub repos using the GitHub API. When I ask about issues or pull requests, fetch and display them from my repos. When I want to create something, use the appropriate GitHub API call. Your available GitHub actions include: list_repos (to show all my repositories), get_repo (to view a specific repo), list_issues (to show open issues), create_issue (to open a new issue), and list_pulls (to view pull requests). Remember to use this skill whenever I mention GitHub, repos, issues, or pull requests.`,
+            prompt: `Implement a GitHub skill using the GitHub REST API. The AI must be able to:
+
+Code Management: Read file contents from a repo, create new branches, and commit code changes.
+
+Collaboration: List, read, and comment on Issues; create new Pull Requests; and check the status of GitHub Action workflows.
+
+Discovery: Search for repositories or specific code snippets within an organization.`,
             instructions: `<h4>Step 1: Create a GitHub Personal Access Token</h4>
 <p>1. Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings > Developer settings > Personal access tokens</a></p>
 <p>2. Click "Generate new token (classic)"</p>
@@ -489,7 +545,13 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="note"><strong>Security:</strong> Never share your token. If exposed, regenerate it immediately.</div>`
         },
         filesystem: {
-            prompt: `Your job is to implement the File System skill. When I ask you to read a file, access and display its contents from my local file system. When I ask you to write or create a file, save the content to the specified location. When I ask to list files, show what's in a directory. Always confirm with me before creating or modifying any files. Work within my project directory that I'll specify. This skill allows you to help me with code files, documents, configurations, and any other file operations I request.`,
+            prompt: `Design a local File System skill with strict security boundaries. The AI should be able to:
+
+Explore: List files and directories in a 'home' path.
+
+File Ops: Read text/PDF/CSV files, write new files, and append data to existing logs.
+
+Maintenance: Create new folders, rename files, and safely delete temporary assets. Ensure the AI cannot navigate outside the permitted directory (Path Traversal protection).`,
             instructions: `<h4>No Setup Required</h4>
 <p>This skill uses your local file system. No API keys needed!</p>
 
@@ -507,7 +569,13 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="note"><strong>Tip:</strong> The bot will only work within the directories you explicitly allow.</div>`
         },
         websearch: {
-            prompt: `I want you to learn the Web Search skill. From now on, when I ask you a question that requires current or up-to-date information, search the internet to find the answer. Use a web search tool to find relevant information from reliable sources, then summarize the results for me in a clear and helpful way. This skill helps you provide accurate, timely information rather than relying only on your training data. Remember to use this whenever I ask about news, current events, or information that might have changed since your training.`,
+            prompt: `Equip the AI with a Web Search skill using the Tavily or Google Custom Search API. The AI must:
+
+Search: Execute queries and retrieve a list of ranked URLs.
+
+Extract: Scrape and 'clean' the text content from the top results.
+
+Verify: Compare information across multiple sources to ensure accuracy before presenting a final answer to the user.`,
             instructions: `<h4>Choose a Search Provider</h4>
 <p>You can use one of several search APIs. Here are the options:</p>
 
